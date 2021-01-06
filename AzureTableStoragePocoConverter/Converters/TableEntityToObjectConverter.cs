@@ -1,5 +1,4 @@
-﻿using AzureTableStoragePocoConverter.Attributes;
-using AzureTableStoragePocoConverter.Extensions;
+﻿using AzureTableStoragePocoConverter.Extensions;
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,6 @@ namespace AzureTableStoragePocoConverter.Converters
     {
         private T _resultObject;
         private PropertyInfo[] _reflectedProperties;
-
 
         public TableEntityToObjectConverter()
         {
@@ -31,19 +29,19 @@ namespace AzureTableStoragePocoConverter.Converters
 
         public void SetPartitionKey(string value)
         {
-            var property = _reflectedProperties.Single(typeof(PartitionKeyAttribute));
+            var property = _reflectedProperties.Single(TableEntityConvertSettings.PartitionKeyAttribute);
             property.SetValue(_resultObject, value);
         }
 
         public void SetRowKey(string value)
         {
-            var property = _reflectedProperties.Single(typeof(RowKeyAttribute));
+            var property = _reflectedProperties.Single(TableEntityConvertSettings.RowKeyAttribute);
             property.SetValue(_resultObject, value);
         }
 
         public void SetETag(string value)
         {
-            var property = _reflectedProperties.SingleOrDefault(typeof(ETagAttribute));
+            var property = _reflectedProperties.SingleOrDefault(TableEntityConvertSettings.ETagAttribute);
             if (property != default(PropertyInfo))
             {
                 property.SetValue(_resultObject, value);
@@ -52,7 +50,7 @@ namespace AzureTableStoragePocoConverter.Converters
 
         public void SetTimestamp(DateTimeOffset value)
         {
-            var property = _reflectedProperties.SingleOrDefault(typeof(TimestampAttribute));
+            var property = _reflectedProperties.SingleOrDefault(TableEntityConvertSettings.TimestampAttribute);
             if (property != default(PropertyInfo))
             {
                 property.SetValue(_resultObject, value);

@@ -1,5 +1,4 @@
-﻿using AzureTableStoragePocoConverter.Attributes;
-using AzureTableStoragePocoConverter.Extensions;
+﻿using AzureTableStoragePocoConverter.Extensions;
 using Microsoft.WindowsAzure.Storage.Table;
 using System;
 using System.Collections.Generic;
@@ -11,11 +10,11 @@ namespace AzureTableStoragePocoConverter.Converters
     public class ObjectToTableEntityConverter
     {
         private Type[] _ignoredPropertyAttributeTypes = new[] {
-            typeof(IgnorePropertyAttribute),
-            typeof(ETagAttribute),
-            typeof(PartitionKeyAttribute),
-            typeof(RowKeyAttribute),
-            typeof(TimestampAttribute)
+            TableEntityConvertSettings.IgnorePropertyAttribute,
+            TableEntityConvertSettings.RowKeyAttribute,
+            TableEntityConvertSettings.PartitionKeyAttribute,
+            TableEntityConvertSettings.ETagAttribute,
+            TableEntityConvertSettings.TimestampAttribute
         };
 
         private object _sourceObject;
@@ -29,20 +28,26 @@ namespace AzureTableStoragePocoConverter.Converters
 
         public string GetPartitionKey()
         {
-            var property = _reflectedProperties.Single(typeof(PartitionKeyAttribute));
+            var property = _reflectedProperties.Single(TableEntityConvertSettings.PartitionKeyAttribute);
             return (string)property.GetValue(_sourceObject);
         }
 
         public string GetRowKey()
         {
-            var property = _reflectedProperties.Single(typeof(RowKeyAttribute));
+            var property = _reflectedProperties.Single(TableEntityConvertSettings.RowKeyAttribute);
             return (string)property.GetValue(_sourceObject);
         }
 
         public string GetETag()
         {
-            var property = _reflectedProperties.SingleOrDefault(typeof(ETagAttribute));
+            var property = _reflectedProperties.SingleOrDefault(TableEntityConvertSettings.ETagAttribute);
             return property != default(PropertyInfo) ? (string)property.GetValue(_sourceObject) : default(string);
+        }
+
+        public DateTimeOffset GetTimestamp()
+        {
+            var property = _reflectedProperties.SingleOrDefault(TableEntityConvertSettings.TimestampAttribute);
+            return property != default(PropertyInfo) ? (DateTimeOffset)property.GetValue(_sourceObject) : default(DateTimeOffset);
         }
 
         public IDictionary<string, EntityProperty> GetEntityProperties()
@@ -68,6 +73,7 @@ namespace AzureTableStoragePocoConverter.Converters
                 PartitionKey = GetPartitionKey(),
                 RowKey = GetRowKey(),
                 ETag = GetETag(),
+                Timestamp = GetTimestamp(),
                 Properties = GetEntityProperties()
             };
         }

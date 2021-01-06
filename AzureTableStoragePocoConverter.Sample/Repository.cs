@@ -1,4 +1,5 @@
-﻿using AzureTableStoragePocoConverter.Sample.Pocos;
+﻿using AzureTableStoragePocoConverter.Attributes;
+using AzureTableStoragePocoConverter.Sample.Pocos;
 using Microsoft.WindowsAzure.Storage.Table;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace AzureTableStoragePocoConverter.Sample
         public Repository(CloudTable cloudTable)
         {
             _cloudTable = cloudTable;
+            SetupConverter();
         }
 
         public async Task<Customer> GetCustomer(string lastName, string firstName)
@@ -33,6 +35,15 @@ namespace AzureTableStoragePocoConverter.Sample
             // Save the new or updated entity in the Storage
             var operation = TableOperation.InsertOrReplace(tableEntity);
             await _cloudTable.ExecuteAsync(operation);
+        }
+
+        private void SetupConverter()
+        {
+            TableEntityConvertSettings.RowKeyAttribute = typeof(RowKeyAttribute);
+            TableEntityConvertSettings.PartitionKeyAttribute = typeof(PartitionKeyAttribute);
+            TableEntityConvertSettings.ETagAttribute = typeof(ETagAttribute);
+            TableEntityConvertSettings.TimestampAttribute = typeof(TimestampAttribute);
+            TableEntityConvertSettings.IgnorePropertyAttribute = typeof(IgnorePropertyAttribute);
         }
     }
 }

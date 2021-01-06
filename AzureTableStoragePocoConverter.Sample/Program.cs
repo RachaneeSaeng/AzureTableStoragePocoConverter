@@ -24,6 +24,7 @@ namespace AzureTableStoragePocoConverter.Sample
                 FirstName = "Jeff",
                 Email = "Jeff@contoso.com",
                 TemporaryLoginHash = Guid.NewGuid().ToString("N"),
+                Timestamp = DateTimeOffset.Now.AddDays(-1),
                 Address = new Address
                 {
                     Street = "Sesame Street",

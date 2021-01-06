@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AzureTableStoragePocoConverter" Version="1.0.2" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AzureTableStoragePocoConverter\AzureTableStoragePocoConverter.csproj" />
   </ItemGroup>
 
 </Project>

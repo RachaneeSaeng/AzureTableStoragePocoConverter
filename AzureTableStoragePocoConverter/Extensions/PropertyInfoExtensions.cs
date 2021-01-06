@@ -7,8 +7,7 @@ namespace AzureTableStoragePocoConverter.Extensions
 {
     static class PropertyInfoExtensions
     {
-        public static EntityProperty GetValueAsEntityProperty(this PropertyInfo propertyInfo,
-            object obj)
+        public static EntityProperty GetValueAsEntityProperty(this PropertyInfo propertyInfo, object obj)
         {
             var value = propertyInfo.GetValue(obj);
 

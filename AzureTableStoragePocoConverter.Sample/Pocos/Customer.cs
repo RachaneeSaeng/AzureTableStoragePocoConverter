@@ -21,7 +21,7 @@ namespace AzureTableStoragePocoConverter.Sample.Pocos
 
         // Timestamp is optional and can safely have a private setter
         [Timestamp]
-        public DateTimeOffset Timestamp { get; private set; }
+        public DateTimeOffset Timestamp { get; set; }
 
         // Ordinary string field will be stored as string in the entity
         public string Email { get; set; }
