@@ -1,6 +1,6 @@
 ﻿using AzureTableStoragePocoConverter.Attributes;
 using AzureTableStoragePocoConverter.Sample.Pocos;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
 using System.Threading.Tasks;
 
 namespace AzureTableStoragePocoConverter.Sample

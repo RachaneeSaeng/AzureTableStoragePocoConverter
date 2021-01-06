@@ -4,7 +4,7 @@
 [![NuGet version](https://img.shields.io/nuget/v/AzureTableStoragePocoConverter.svg?style=flat-square&colorB=004880)](https://www.nuget.org/packages/AzureTableStoragePocoConverter/)
 [![License: MIT](https://img.shields.io/github/license/rgbweb/AzureTableStoragePocoConverter.svg?style=flat-square&colorB=969696)](https://github.com/rgbweb/AzureTableStoragePocoConverter/blob/master/LICENSE)
 
-.NET Standard 2.0 library with helpers to convert your POCO objects to Azure Table Storage objects of type `ITableEntity` or `DynamicTableEntity` and vice versa.
+.NET Standard 2.1 library with helpers to convert your POCO objects to Azure Table Storage objects of type `ITableEntity` or `DynamicTableEntity` and vice versa.
 
 It supports saving complex classes by converting not natively supported property types into JSON strings.
 

@@ -1,5 +1,5 @@
 ﻿using AzureTableStoragePocoConverter.Sample.Pocos;
-using Microsoft.WindowsAzure.Storage;
+using Microsoft.Azure.Cosmos.Table;
 using System;
 using System.Threading.Tasks;
 

@@ -1,5 +1,5 @@
 ﻿using AzureTableStoragePocoConverter.Attributes;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
 using System;
 
 namespace AzureTableStoragePocoConverter.Sample.Pocos
